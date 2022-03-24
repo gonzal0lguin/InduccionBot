@@ -1,0 +1,14 @@
+<launch>
+    <node name="serial_node"        pkg="rosserial_arduino"      type="serial_node.py">
+    <param name="port"              type="string"               value="/dev/ttyUSB0"/>
+    <param name="baud"              type="int"                  value="57600"/>
+    </node>
+
+    <node name= "bot_vel" pkg="induccion" type="teleop.py" output="screen"/>
+
+    <node respawn="true" pkg="joy"
+        type="joy_node" name="bot_joy" >
+    <param name="dev" type="string" value="/dev/input/js0" />
+    <param name="deadzone" value="0.12" />
+  </node>
+</launch>
