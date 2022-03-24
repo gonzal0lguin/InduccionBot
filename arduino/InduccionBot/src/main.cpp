@@ -15,7 +15,7 @@ ros::NodeHandle nh;
 
 void callback_func(const std_msgs::Float32MultiArray & cmd_msg){
 
-  if (cmd_msg.data[3] == 1){ // stop cmd
+  if ((int )cmd_msg.data[3] == 1){ // stop cmd
     bot.stop();
   }
 
