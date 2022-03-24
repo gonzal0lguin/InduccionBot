@@ -14,10 +14,18 @@ RobotController bot(m3, m2, m1, m0);
 ros::NodeHandle nh;
 
 void callback_func(const std_msgs::Float32MultiArray & cmd_msg){
-  double x_vel = cmd_msg.data[0];
-  double y_vel = cmd_msg.data[1];
-  double w = cmd_msg.data[2];
-  bot.compute_linear_combination(x_vel, y_vel, w);
+
+  if (cmd_msg.data[3] == 1){ // stop cmd
+    bot.stop();
+  }
+
+  else{
+    double x_vel = cmd_msg.data[0];
+    double y_vel = cmd_msg.data[1];
+    double w = cmd_msg.data[2];
+    bot.compute_linear_combination(x_vel, y_vel, w);
+  }
+
   nh.loginfo("info received");
 
 }
