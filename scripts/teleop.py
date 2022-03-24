@@ -11,7 +11,7 @@ class teleJoy(object):
     def __init__(self):
         self.joy = rospy.Subscriber('/joy', Joy, self.__callback_func)
         self.pub = rospy.Publisher('/bot_vel', Float32MultiArray, queue_size=1)
-        self.vels = [0, 0, 0]
+        self.vels = [0.0, 0.0, 0.0, 0.0] #x, y, w, stop
         self.mode = 0
 
         print('Initialized')
@@ -31,6 +31,8 @@ class teleJoy(object):
         if (abs(msg.axes[3]) > EPS):
             self.vels[2] = msg.axes[3] * SPEED_FACTOR
         else: self.vels[2] = 0.0
+
+        self.vels[3] = msg.buttons[0] # stop button
 
         arr_msg = Float32MultiArray()
         arr_msg.data = self.vels
