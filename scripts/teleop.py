@@ -32,8 +32,9 @@ class teleJoy(object):
             self.vels[2] = msg.axes[3] * SPEED_FACTOR
         else: self.vels[2] = 0.0
 
-        self.vels[3] = msg.buttons[0] # stop button
-
+        if msg.buttons[0] == 1: # stop button
+            self.vels[3] = (self.vels[3] + 1) % 2
+        
         arr_msg = Float32MultiArray()
         arr_msg.data = self.vels
         rospy.sleep(0.001)
