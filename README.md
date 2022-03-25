@@ -19,3 +19,19 @@ void loop() {
   bot.run()
 }
 ```
+
+## Configuración ROS
+
+Cuando se crea un nuevo código en python, es necesario hacerlo ejecutable:
+
+```bash
+sudo chmod +x new_script.py
+```
+
+Recordar que es necesario agregar al inicio del script:
+
+```python
+#!/usr/bin/env python
+```
+
+Si se quiere configurar un nuevo launch file, seguir [este tutorial](https://automaticaddison.com/how-to-create-and-execute-ros-launch-files/)
