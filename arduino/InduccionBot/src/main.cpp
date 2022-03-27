@@ -7,14 +7,16 @@
 
 AF_DCMotor m0(1, MOTOR12_64KHZ);
 AF_DCMotor m1(2, MOTOR12_64KHZ);
-AF_DCMotor m2(3, MOTOR12_64KHZ);
-AF_DCMotor m3(4, MOTOR12_64KHZ);
+AF_DCMotor m2(3, MOTOR34_64KHZ);
+AF_DCMotor m3(4, MOTOR34_64KHZ);
 
 RobotController bot(m3, m2, m1, m0);
 ros::NodeHandle nh;
 
 void callback_func(const std_msgs::Float32MultiArray & cmd_msg){
-
+  // This funtion gets called every time a new rosmsg is published
+  // on the bot_vel node
+  
   if ((int )cmd_msg.data[3] == 1){ // stop cmd
     bot.stop();
   }

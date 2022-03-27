@@ -7,7 +7,6 @@
 #define N_MOTORS 4
 #define _NOCMD_ 9999
 
-using namespace std;
 
 // el codigo tiene que estar pensado de tal manera que cada motor
 // con un mensaje de ROS que crearemos nosotros que sera del tipo
@@ -38,9 +37,9 @@ class RobotController {
         double __wheel_radius_mm = 30.0;
 
         int __def_vel = 200;
-        vector<AF_DCMotor> __motors;
-        vector<uint8_t> __dirs;
-        vector<int> __speeds;
+        std::vector<AF_DCMotor> __motors;
+        std::vector<uint8_t> __dirs;
+        std::vector<int> __speeds;
 };
 
 #endif

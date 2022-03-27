@@ -1,7 +1,6 @@
 #include "botController.h"
 
 /*
-
 Motors must be arranged such that:
             .______.
     w1-> []-|  x   |-[] <- w2
@@ -21,14 +20,10 @@ RobotController::RobotController(AF_DCMotor m0, AF_DCMotor m1, AF_DCMotor m2, AF
 
 void RobotController::compute_linear_combination(double x_vel, double y_vel, double w){
     /*
-    This must take an input (like the ROS 4motor vector msg)
-    and update the speeds accordingly to the motion algorithm
-
-    TODO: I THINK IT SHOULD TAKE X & Y SPEEDS + AN ANGULAR SPEED, 
-    AND THE COMPUTE EACH MOTOR VELOCITY
+    This function takes as an input a bot velocity in x-y and angular speed, and computes
+    each motor speed to achieve such input. 
     */
 
-    //__speeds = ...
     x_vel = x_vel == _NOCMD_ ? 0.0 : x_vel;
     y_vel = y_vel == _NOCMD_ ? 0.0 : y_vel;
     w = w == _NOCMD_ ? 0.0 : w;
@@ -37,6 +32,12 @@ void RobotController::compute_linear_combination(double x_vel, double y_vel, dou
     __speeds[1] = (int )((x_vel - y_vel + w * (__width_mm + __lenght_mm)) / __wheel_radius_mm) * 1000;
     __speeds[2] = (int )((x_vel - y_vel - w * (__width_mm + __lenght_mm)) / __wheel_radius_mm) * 1000;
     __speeds[3] = (int )((x_vel + y_vel + w * (__width_mm + __lenght_mm)) / __wheel_radius_mm) * 1000;
+
+    // this block makes sure speeds are between -255 and 255, if motors don't move
+    // comment this out
+    for (int i= 0; i< N_MOTORS; i++){
+        __speeds[i] = constrain(__speeds[i], -255, 255);
+    }
 
     set_speeds();
 }
