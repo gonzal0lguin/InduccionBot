@@ -5,7 +5,7 @@ from std_msgs.msg import Float32MultiArray
 from sensor_msgs.msg import Joy
 
 EPS = 0.22
-SPEED_FACTOR = 1000
+SPEED_FACTOR = 500
 
 class teleJoy(object):
     def __init__(self):
@@ -17,9 +17,18 @@ class teleJoy(object):
         print('Initialized')
 
     def __mode(self, mode_truth):
+        """This function can be used to select between different
+        modes of driving. Assing any button to any action you want.
+        """
         pass
 
     def __callback_func(self, msg):
+        """ Function to get called every time a new joystick msg
+        is received.
+        Args:
+            msg (Joy): ROS msg containing bot speeds.
+        """
+        
         if (abs(msg.axes[1]) > EPS):
             self.vels[0] = msg.axes[1] * SPEED_FACTOR
         else: self.vels[0] = 0.0
@@ -43,24 +52,14 @@ class teleJoy(object):
         rospy.loginfo('Data received: {}'.format(self.vels))
 
     def __arr_pub(self, arr_msg):
+        """ If there are more than one topic to publish, define a
+        function to publish in order to make code cleaner.
+        """
         pass
 
 
 
 if __name__ == "__main__":
     rospy.init_node("bot_teleop_control")
-    jot_ctrl = teleJoy()
+    joy_ctrl = teleJoy()
     rospy.spin()
-
-
-# BUTTONS
-#    13
-#  11  12  
-#    14
-
-# a: 0
-# B: 1
-# X: 2
-# Y: 3  
-# LB: 4
-# RB: 5
