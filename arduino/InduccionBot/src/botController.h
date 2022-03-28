@@ -8,10 +8,6 @@
 #define _NOCMD_ 9999
 
 
-// el codigo tiene que estar pensado de tal manera que cada motor
-// con un mensaje de ROS que crearemos nosotros que sera del tipo
-// float: {speed_m0, speed_m1, speed_m2, speed_m3}
-
 class RobotController {
     public:
         RobotController(AF_DCMotor m0, AF_DCMotor m1, AF_DCMotor m2, AF_DCMotor m3);
@@ -27,7 +23,7 @@ class RobotController {
         void turn_right();
         void turn_left();
         void stop();
-        void set_speeds(); // dsps ver el formato en que se entrgan las velocidades
+        void set_speeds();
         void run();
     
     private:
