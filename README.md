@@ -62,7 +62,7 @@ rosrun joy joy_node # inicializar el nodo del joystick
 ```
 
 ```bash
-rostopic echo \joy # ver output del joystick 
+rostopic echo /joy # ver output del joystick 
 ```
 
 ## Conexión a los robots y uso
@@ -75,7 +75,7 @@ ssh pi@hostname.local
 
 ### Inicialización **sin** roslaunch
 
-En el software hay 2 nodos, `\joy` y `\bot_vel`. La Raspberry se suscribe a los mensajes del control remoto y publica sobre las velocidades que debe tener el robot, las cuales son computadas por el Arduino. Para inicializar el control remoto, la Raspberry y el Arduino se deben ejecutar los siguientes 3 comandos, aparte del nodo maestro en 4 terminales distintas.
+En el software hay 2 nodos, `/joy` y `/bot_vel`. La Raspberry se suscribe a los mensajes del control remoto y publica sobre las velocidades que debe tener el robot, las cuales son computadas por el Arduino. Para inicializar el control remoto, la Raspberry y el Arduino se deben ejecutar los siguientes 3 comandos, aparte del nodo maestro en 4 terminales distintas.
 
 ```bash
 roscore
