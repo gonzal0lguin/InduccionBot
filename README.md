@@ -3,7 +3,9 @@
 Este repositorio cuenta con el código base para la actividad de inducción del Laboratorio de Robótica de la Universidad de Chile 2022, el cual tiene el fin de inicializarse en Arduino, Raspberry Pi y ROS.
 
 ## Mecánica del robot
-config ruedas
+La cinemática está calculada usando la convención que se muestra en la figura. Por lo tanto, asegurarse que los motores estén conectados en ese orden tanto en hardware como software.
+
+<img width="394" alt="order" src="https://user-images.githubusercontent.com/80728332/160318855-45bcb574-2784-4d73-8b00-588db32ab251.png">
 
 ## Uso
 
